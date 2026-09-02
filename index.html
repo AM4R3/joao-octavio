@@ -152,7 +152,11 @@ nav{
 
 /* === FIGURA DE FOTO (reutilizável) === */
 .foto-card{position:relative;border:1px solid var(--linha);overflow:hidden;background:var(--grafite);margin:0}
-.foto-card img{width:100%;height:auto;display:block;filter:saturate(.72) contrast(1.04)}
+.foto-card img{
+  width:100%;display:block;
+  height:clamp(400px,64vw,640px);object-fit:cover;object-position:center 22%;
+  filter:saturate(.72) contrast(1.04);
+}
 .foto-card figcaption{
   position:absolute;left:0;right:0;bottom:0;padding:52px 20px 16px;
   background:linear-gradient(180deg,transparent,rgba(10,10,12,.9));
