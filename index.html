@@ -121,17 +121,23 @@ nav{
   background:linear-gradient(160deg,#0A0A0C 0%,#16171B 60%,#0A0A0C 100%);
   position:relative;overflow:hidden;
 }
+/* a foto do hero já vem com a dissolvência para o preto embutida no arquivo */
 .hero-foto{
   position:absolute;inset:0;
   background-image:url('img/hero.jpg');
-  background-size:cover;background-position:68% center;
-  filter:saturate(.62) contrast(1.05);
+  background-size:cover;background-position:center;
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(90deg,#0A0A0C 0%,rgba(10,10,12,.95) 24%,rgba(10,10,12,.66) 50%,rgba(10,10,12,.28) 74%,rgba(10,10,12,.5) 100%),
-    linear-gradient(180deg,rgba(10,10,12,.88) 0%,rgba(10,10,12,.15) 30%,rgba(10,10,12,.2) 58%,#0A0A0C 100%);
+    linear-gradient(90deg,rgba(10,10,12,.9) 0%,rgba(10,10,12,.66) 24%,rgba(10,10,12,.22) 50%,transparent 70%),
+    linear-gradient(180deg,rgba(10,10,12,.72) 0%,transparent 26%,transparent 62%,#0A0A0C 100%);
+}
+@media(max-width:768px){
+  .hero-foto{background-image:url('img/hero-mobile.jpg');background-position:center 6%}
+  .hero::after{
+    background:linear-gradient(180deg,rgba(10,10,12,.86) 0%,rgba(10,10,12,.6) 20%,rgba(10,10,12,.62) 54%,rgba(10,10,12,.88) 84%,#0A0A0C 100%);
+  }
 }
 .hero .wrap{position:relative;z-index:2}
 .hero h1{font-size:clamp(2.5rem,9.2vw,6.4rem);max-width:16ch}
@@ -390,9 +396,9 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
      </div>
 
      <figure class="foto-card rev">
-       <img src="img/adcc-podio.jpg" width="900" height="1200" loading="lazy" decoding="async"
-            alt="João Octávio sentado no pódio do ADCC Latin America Open com três medalhas no pescoço.">
-       <figcaption><b>ADCC Latin America Open</b> — o terceiro título</figcaption>
+       <img src="img/conquista-ringue.jpg" width="900" height="1200" loading="lazy" decoding="async"
+            alt="João Octávio no ringue do S1R Fight, de shorts vermelho de muay thai, comemorando.">
+       <figcaption><b>S1R Fight</b> — invicto no muay thai</figcaption>
      </figure>
     </div>
 
@@ -471,8 +477,8 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
       </div>
       <div class="rot-card rev">
         <div class="rot-foto">
-          <img src="img/rotina-kickboxing.jpg" width="800" height="1000" loading="lazy" decoding="async"
-               alt="João Octávio comemorando no ringue, de shorts vermelho de muay thai, durante o S1R Fight.">
+          <img src="img/rotina-kickboxing.jpg" width="1000" height="700" loading="lazy" decoding="async"
+               alt="João Octávio aplicando um chute alto no adversário durante luta de muay thai no S1R Fight.">
         </div>
         <div class="rot-body">
           <div class="rot-hora">Manhã</div>
