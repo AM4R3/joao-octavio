@@ -1,0 +1,14 @@
+{
+  "name": "João Octávio — Atleta de MMA",
+  "short_name": "João Octávio",
+  "description": "Atleta de MMA bantamweight de Mateus Leme/MG. 3x campeão ADCC, invicto no muay thai.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0C",
+  "theme_color": "#0A0A0C",
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
