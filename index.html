@@ -33,6 +33,7 @@
 <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="preload" as="image" href="img/hero.jpg" fetchpriority="high">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
@@ -120,13 +121,17 @@ nav{
   background:linear-gradient(160deg,#0A0A0C 0%,#16171B 60%,#0A0A0C 100%);
   position:relative;overflow:hidden;
 }
-/* SUBSTITUIR: foto editorial do João de capuz preto, luz dura, 1400x900px
-   (existe esse ensaio no feed dele — post fixado).
-   Aplicar aqui: .hero-foto{background-image:url('foto-hero.jpg')} */
-.hero-foto{position:absolute;inset:0;background-size:cover;background-position:center 20%;opacity:.55}
+.hero-foto{
+  position:absolute;inset:0;
+  background-image:url('img/hero.jpg');
+  background-size:cover;background-position:68% center;
+  filter:saturate(.62) contrast(1.05);
+}
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(120% 90% at 50% 40%,transparent 30%,rgba(10,10,12,.72) 78%,#0A0A0C 100%);
+  background:
+    linear-gradient(90deg,#0A0A0C 0%,rgba(10,10,12,.95) 24%,rgba(10,10,12,.66) 50%,rgba(10,10,12,.28) 74%,rgba(10,10,12,.5) 100%),
+    linear-gradient(180deg,rgba(10,10,12,.88) 0%,rgba(10,10,12,.15) 30%,rgba(10,10,12,.2) 58%,#0A0A0C 100%);
 }
 .hero .wrap{position:relative;z-index:2}
 .hero h1{font-size:clamp(2.5rem,9.2vw,6.4rem);max-width:16ch}
@@ -145,7 +150,18 @@ nav{
 .cd-uni{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--mute);margin-top:8px}
 .cd-fim{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.15rem;color:var(--dourado);line-height:1.2}
 
+/* === FIGURA DE FOTO (reutilizável) === */
+.foto-card{position:relative;border:1px solid var(--linha);overflow:hidden;background:var(--grafite);margin:0}
+.foto-card img{width:100%;height:auto;display:block;filter:saturate(.72) contrast(1.04)}
+.foto-card figcaption{
+  position:absolute;left:0;right:0;bottom:0;padding:52px 20px 16px;
+  background:linear-gradient(180deg,transparent,rgba(10,10,12,.9));
+  font-size:.71rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--texto);
+}
+.foto-card figcaption b{color:var(--dourado);font-weight:700}
+
 /* === CARTEL === */
+.conq-grid{display:grid;gap:36px;align-items:start}
 .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--linha);border:1px solid var(--linha);margin-top:46px}
 .stat{background:var(--preto);padding:34px 22px}
 .stat-num{font-family:'Anton',sans-serif;font-size:clamp(2.6rem,10vw,4.2rem);color:var(--dourado);line-height:.9}
@@ -168,13 +184,13 @@ nav{
 
 /* === ROTINA === */
 .rotina-grid{display:grid;gap:20px;margin-top:46px}
-.rot-card{background:var(--grafite);border:1px solid var(--linha);overflow:hidden}
-/* SUBSTITUIR: fotos de treino — kickboxing, MMA, grappling, 1200x600px.
-   Aplicar como background-image em cada .rot-foto */
+.rot-card{background:var(--grafite);border:1px solid var(--linha);overflow:hidden;display:flex;flex-direction:column}
 .rot-foto{
-  height:190px;background:linear-gradient(140deg,#1E2026 0%,#16171B 55%,#0A0A0C 100%);
+  height:240px;background:linear-gradient(140deg,#1E2026 0%,#16171B 55%,#0A0A0C 100%);
   border-bottom:1px solid var(--linha);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0;
 }
+.rot-foto img{width:100%;height:100%;object-fit:cover;object-position:center 18%;filter:saturate(.7) contrast(1.04)}
 .rot-foto svg{width:40px;height:40px;stroke:var(--dourado);opacity:.5}
 .rot-body{padding:24px 22px 28px}
 .rot-hora{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--dourado)}
@@ -265,7 +281,7 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
 }
 @media(min-width:768px){
   .pad{padding:118px 0}
-  .rotina-grid{grid-template-columns:repeat(3,1fr)}
+  .rotina-grid{grid-template-columns:repeat(2,1fr)}
   .cards3{grid-template-columns:repeat(3,1fr)}
   .cotas{grid-template-columns:repeat(3,1fr)}
   .f-grid{grid-template-columns:repeat(3,1fr)}
@@ -273,7 +289,8 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
 }
 @media(min-width:1024px){
   .nav-links{display:flex}
-  .stats{grid-template-columns:repeat(4,1fr)}
+  .conq-grid{grid-template-columns:1.1fr .9fr;gap:56px}
+  .rotina-grid{grid-template-columns:repeat(4,1fr)}
   .hero{align-items:center}
   .tl{padding-left:0;max-width:900px;margin-left:auto;margin-right:auto}
   .tl::before{left:50%;transform:translateX(-.5px)}
@@ -338,9 +355,12 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
 <section class="pad" id="conquistas">
   <div class="wrap">
     <p class="eyebrow rev">O cartel</p>
-    <h2 class="rev" style="font-size:clamp(1.9rem,6vw,3.2rem);max-width:20ch">Não é promessa. Está escrito em medalha.</h2>
 
-    <div class="stats rev">
+    <div class="conq-grid">
+     <div>
+      <h2 class="rev" style="font-size:clamp(1.9rem,6vw,3.2rem);max-width:20ch">Não é promessa. Está escrito em medalha.</h2>
+
+      <div class="stats rev">
       <div class="stat">
         <div class="stat-num" data-alvo="3" data-sufixo="x">0</div>
         <div class="stat-tit">Campeão ADCC Open</div>
@@ -362,6 +382,14 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
         <div class="stat-tit">De treino por dia</div>
         <div class="stat-sub">Dois turnos, todos os dias da semana</div>
       </div>
+      </div>
+     </div>
+
+     <figure class="foto-card rev">
+       <img src="img/adcc-podio.jpg" width="900" height="1200" loading="lazy" decoding="async"
+            alt="João Octávio sentado no pódio do ADCC Latin America Open com três medalhas no pescoço.">
+       <figcaption><b>ADCC Latin America Open</b> — o terceiro título</figcaption>
+     </figure>
     </div>
 
     <a href="#patrocinio" class="funil rev">Quero patrocinar
@@ -423,38 +451,49 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
   <div class="wrap">
     <p class="eyebrow rev">A rotina</p>
     <h2 class="rev" style="font-size:clamp(1.9rem,6vw,3.2rem)">Dois turnos. Todos os dias.</h2>
-    <p class="lead rev" style="margin-top:22px">Enquanto a cidade acorda, o primeiro treino já acabou. Dois turnos, seis horas por dia: kickboxing, MMA e grappling — no Xaropinho Kickboxing e no CT Sena Fight Team.</p>
+    <p class="lead rev" style="margin-top:22px">Enquanto a cidade acorda, a preparação física já acabou. Dois turnos, seis horas por dia: força e condicionamento, kickboxing, MMA e grappling — no Xaropinho Kickboxing e no CT Sena Fight Team.</p>
 
     <div class="rotina-grid">
-      <!-- SUBSTITUIR: foto de treino de kickboxing, 1200x600px -->
+      <!-- SUBSTITUIR: foto de preparação física / academia, 800x1000px -->
       <div class="rot-card rev">
         <div class="rot-foto">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V7a2 2 0 0 1 2-2h6a4 4 0 0 1 4 4v3a5 5 0 0 1-5 5H9a3 3 0 0 1-3-3z"/><path d="M6 16v2a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5v11M3.5 9v6M17.5 6.5v11M20.5 9v6M6.5 12h11"/></svg>
         </div>
         <div class="rot-body">
-          <div class="rot-hora">Manhã &middot; 2h</div>
+          <div class="rot-hora">Manhã</div>
+          <h3 class="rot-tit">Preparação física</h3>
+          <p class="rot-txt">O dia abre com força e condicionamento. É o trabalho que sustenta o ritmo dos rounds e não aparece em nenhuma luta — mas decide todas.</p>
+        </div>
+      </div>
+      <div class="rot-card rev">
+        <div class="rot-foto">
+          <img src="img/rotina-kickboxing.jpg" width="800" height="1000" loading="lazy" decoding="async"
+               alt="João Octávio comemorando no ringue, de shorts vermelho de muay thai, durante o S1R Fight.">
+        </div>
+        <div class="rot-body">
+          <div class="rot-hora">Manhã</div>
           <h3 class="rot-tit">Kickboxing</h3>
           <p class="rot-txt">Trocação em pé no Xaropinho Kickboxing — a base que manteve o cartel invicto no muay thai.</p>
         </div>
       </div>
-      <!-- SUBSTITUIR: foto de treino de MMA, 1200x600px -->
       <div class="rot-card rev">
         <div class="rot-foto">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12v9M12 12l8-4.5M12 12L4 7.5"/></svg>
+          <img src="img/rotina-mma.jpg" width="800" height="1000" loading="lazy" decoding="async"
+               alt="João Octávio com o braço erguido pela árbitra após vitória no ringue.">
         </div>
         <div class="rot-body">
-          <div class="rot-hora">Tarde &middot; 2h</div>
+          <div class="rot-hora">Tarde</div>
           <h3 class="rot-tit">MMA</h3>
           <p class="rot-txt">Jogo completo no CT Sena Fight Team: transições, clinch, luta de chão e sparring com foco na estreia.</p>
         </div>
       </div>
-      <!-- SUBSTITUIR: foto de treino de grappling, 1200x600px -->
       <div class="rot-card rev">
         <div class="rot-foto">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="4"/><circle cx="16" cy="16" r="4"/><path d="M11 11l2 2"/></svg>
+          <img src="img/rotina-grappling.jpg" width="800" height="1000" loading="lazy" decoding="async"
+               alt="João Octávio comemorando gritando após luta de jiu-jitsu.">
         </div>
         <div class="rot-body">
-          <div class="rot-hora">Noite &middot; 2h</div>
+          <div class="rot-hora">Noite</div>
           <h3 class="rot-tit">Grappling</h3>
           <p class="rot-txt">A arma principal. É daqui que saíram os três títulos ADCC e os campeonatos no-gi em Minas.</p>
         </div>
@@ -641,7 +680,9 @@ footer{border-top:1px solid var(--linha);padding:52px 0 40px;font-size:.84rem;co
         <p style="margin-top:6px"><a href="https://wa.me/55XXXXXXXXXXX?text=Quero%20patrocinar%20o%20Jo%C3%A3o%20Oct%C3%A1vio" target="_blank" rel="noopener">WhatsApp para patrocínio</a></p>
       </div>
     </div>
-    <p class="f-base">&copy; <span id="ano">2026</span> João Octávio. Todos os direitos reservados.</p>
+    <!-- SUBSTITUIR: confirmar/completar os créditos de foto com o João -->
+    <p class="f-base">Fotos: @minhafotonoesporte e demais fotógrafos dos eventos.<br>
+      &copy; <span id="ano">2026</span> João Octávio. Todos os direitos reservados.</p>
   </div>
 </footer>
 
