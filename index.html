@@ -130,7 +130,7 @@ nav{
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(10,10,12,.9) 0%,rgba(10,10,12,.66) 24%,rgba(10,10,12,.22) 50%,transparent 70%),
+    linear-gradient(90deg,rgba(10,10,12,.96) 0%,rgba(10,10,12,.9) 30%,rgba(10,10,12,.62) 52%,rgba(10,10,12,.18) 72%,transparent 84%),
     linear-gradient(180deg,rgba(10,10,12,.72) 0%,transparent 26%,transparent 62%,#0A0A0C 100%);
 }
 /* No celular a foto não fica atrás do texto: vira uma faixa própria no topo,
@@ -150,6 +150,7 @@ nav{
 }
 .hero .wrap{position:relative;z-index:2}
 .hero h1{font-size:clamp(2.5rem,9.2vw,6.4rem);max-width:16ch}
+@media(min-width:769px){.hero h1{max-width:12ch;font-size:clamp(2.6rem,5.6vw,4.9rem)}.hero .lead{max-width:44ch}}
 .hero .lead{margin-top:26px;font-size:1.05rem;max-width:52ch}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
 
